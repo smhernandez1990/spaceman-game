@@ -1,0 +1,113 @@
+body {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#spacemanImgDisplay {
+    width: 250px;
+    height: 500px;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+
+#hintDisplay {
+    margin: 10px 15px;
+    padding: 5px;
+    width: fit-content;
+    align-self: center;
+    height: 25px;
+    font-size: 20px;
+    font-size: small;
+    font-weight: 600;
+}
+
+.letterButtons button {
+    width: 40px;
+    height: 40px;
+    margin: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.letterButtons button:hover {
+    background-color: lavender;
+}
+
+#resetBtn {
+    width: 100px;
+    height: 40px;
+    align-self: center;
+    border: none;
+    border-radius: 5px;
+}
+
+#resetBtn:hover {
+    background-color: lavender;
+    cursor: pointer;
+}
+
+.gameboardDisplay {
+    margin: 10px;
+    font-size: 30px;
+    letter-spacing: 10px;
+    width: fit-content;
+    height: 70px;
+    align-self: center;
+}
+
+#lvl1B, #lvl1L1, #lvl1A1, #lvl1C {
+    display: inline-flex;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+}
+
+#lvl1K {
+    display: inline-flex;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+#lvl1M, #lvl1E, #lvl1T, #lvl1A2, #lvl1L2 {
+    display: inline-flex;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+}
+
+.lvlTwo {
+    display: inline-flex;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+}
+
+#lvl3P, #lvl3O1, #lvl3W, #lvl3E1 {
+    display: inline-flex;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+}
+
+#lvl3R1 {
+    display: inline-flex;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+#lvl3E2, #lvl3L2, #lvl3E3, #lvl3C1, #lvl3T, #lvl3R2, #lvl3O2, #lvl3N, #lvl3I, #lvl3C2, #lvl3S {
+    display: inline-flex;
+    border: 2px solid black;
+    width: 70px;
+    height: 70px;
+}
