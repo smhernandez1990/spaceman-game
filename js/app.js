@@ -18,7 +18,7 @@ Hint: A subgenre of industrial music coined in the early 1980s in England often 
 
 let currentWord;
 let currentLevel;
-let incorrectGuesses;
+let incorrectGuesses = 0;
 let guessedLetters = [];
 let win;
 let lose;
@@ -44,8 +44,6 @@ function init() {
     gameboard = lvlOneBoard;
     win = false;
     lose = false;
-    incorrectGuesses = 0;
-    guessedLetters = [];
     loadLevel();
 }
 
@@ -57,51 +55,78 @@ function loadLevel() {
         lvlTwoBoard.style.display = 'none';
         lvlThreeBoard.style.display = 'none';
         currentWord = 'BLACKMETAL';
-        if (currentWord === guessedLetters.join('')){
-            currentLevel = 2;
-            gameboard = lvlTwoBoard
-            alert('Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out')
-            incorrectGuesses = 0
-            guessedLetters = []
-        };
-
     } else if (currentLevel === 2) {
         hintDisplayEl.textContent = 'HINT: Artists C.C.C.C., Incapacitants, Masonna and Hanatarash are among the notable pioneers of this regional style of experimental music.';
         lvlOneBoard.style.display = 'none';
         lvlThreeBoard.style.display = 'none';
         currentWord = 'JAPANOISE';
-        if (currentWord === guessedLetters.join('')){
-            currentLevel = 3;
-            gameboard = lvlThreeBoard
-            incorrectGuesses = 0
-            guessedLetters = []
-            alert('Okay okay, your local record store had a freak music section. But what about something a little more depraved?')
-        }
-
+        gameboard = lvlTwoBoard;
     } else if (currentLevel === 3) {
         hintDisplayEl.textContent = 'HINT: A subgenre of industrial music coined in the early 1980s in England often characterized by abrasive synthesizers, aggressive vocals and provocative themes.';
         lvlOneBoard.style.display = 'none';
         lvlTwoBoard.style.display = 'none';
         currentWord = 'POWERELECTRONICS';
-        if (currentWord === guessedLetters.join('')){
-            win = true;
-        };
+        gameboard = lvlThreeBoard;
     };
 };
+
+function render() {
+    lvlAdvance();
+    checkWin();
+    checkLose();
+    loadLevel();
+};
+
+function lvlAdvance() {
+    if (currentLevel === 1 && currentWord === guessedLetters.join('')) {
+        currentLevel = 2;
+        incorrectGuesses = 0;
+        guessedLetters = [];
+        alert('Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out');
+    } else if (currentLevel === 2 && currentWord === guessedLetters.join('')) {
+        currentLevel = 3;
+        incorrectGuesses = 0;
+        guessedLetters = [];
+        alert('Okay okay, your local record store had a freak music section. But what about something a little more depraved?');
+    }
+};
+
+function checkWin() {
+    if (currentLevel === 3 && currentWord === guessedLetters.join('')) {
+        win = true;
+        return alert('You Win! You are a true purveyor of the subversive and depraved. Congrats?');
+    };
+};
+
+function checkLose() {
+    if (incorrectGuesses === 1) {
+        spacemanImgDisplayEl.src = `https://i.imgur.com/A27buek.png`;
+    } else if (incorrectGuesses === 2) {
+        spacemanImgDisplayEl.src = `https://i.imgur.com/uoZC9gL.png`;
+    } else if (incorrectGuesses === 3) {
+        spacemanImgDisplayEl.src = `https://i.imgur.com/fMXcJfX.png`;
+    } else if (incorrectGuesses === 4) {
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/QDmhY1D.png';
+    } else if (incorrectGuesses === 5) {
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/2EewjBC.jpg';
+        lose = true;
+        return alert('You Lose! Try again or maybe lurk some special interest forums from the 2000\'s first');
+    };
+}
 
 function handleClick(event) {
     const letterClicked = event.target.textContent;
     console.log(letterClicked);
     if (currentWord.includes(letterClicked)) {
         guessedLetters.push(letterClicked);
-        console.log(guessedLetters);
-        
+        console.log(guessedLetters); 
     } else {
         incorrectGuesses++;
-        console.log(incorrectGuesses);
-        
+        console.log(incorrectGuesses);  
     };
+    render();
 };
+
 
 
 letterButtonsEls.addEventListener('click', handleClick)
