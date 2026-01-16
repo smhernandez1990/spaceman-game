@@ -52,15 +52,6 @@ body {
     cursor: pointer;
 }
 
-.gameboardDisplay {
-    margin: 10px;
-    font-size: 30px;
-    letter-spacing: 10px;
-    width: fit-content;
-    height: 70px;
-    align-self: center;
-}
-
 #lvl1B, #lvl1L1, #lvl1A1, #lvl1C {
     display: inline-flex;
     border: 2px solid black;
@@ -83,7 +74,7 @@ body {
     height: 70px;
 }
 
-.lvlTwo {
+.lvlTwo > * {
     display: inline-flex;
     border: 2px solid black;
     width: 70px;
