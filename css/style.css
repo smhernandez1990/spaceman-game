@@ -106,7 +106,7 @@ body {
     margin-right: 10px;
 }
 
-#lvl3E2, #lvl3L2, #lvl3E3, #lvl3C1, #lvl3T, #lvl3R2, #lvl3O2, #lvl3N, #lvl3I, #lvl3C2, #lvl3S {
+#lvl3E2, #lvl3L, #lvl3E3, #lvl3C1, #lvl3T, #lvl3R2, #lvl3O2, #lvl3N, #lvl3I, #lvl3C2, #lvl3S {
     display: inline-flex;
     border: 2px solid black;
     width: 70px;

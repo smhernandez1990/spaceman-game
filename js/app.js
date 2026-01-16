@@ -83,11 +83,10 @@ function loadLevel() {
 };
 
 function render() {
+    lvlAdvance();
     updateBoardDisplay();
     checkWin();
     checkLose();
-    lvlAdvance();
-    loadLevel();
 };
 
 function updateBoardDisplay() {
@@ -105,12 +104,14 @@ function lvlAdvance() {
         currentLevel = 2;
         incorrectGuesses = 0;
         resetBoard();
-        alert('Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out'); 
+        alert('Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out');
+        loadLevel();
     } else if (currentLevel === 2 && currentWord === guessedLetters.join('')) {
         currentLevel = 3;
         incorrectGuesses = 0;
         alert('Okay okay, your local record store had a freak music section. But what about something a little more depraved?');
         resetBoard();
+        loadLevel();
     }
 };
 
