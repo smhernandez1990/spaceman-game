@@ -7,11 +7,17 @@ body {
     font-family: sans-serif;
 }
 
-#spacemanImgDisplay {
+.spacemanImgDisplay {
     width: 250px;
     height: 500px;
     margin: 0 auto;
     border: 2px solid black;
+}
+
+.spacemanImgDisplay img {
+    background-size: contain;
+    width: 250px;
+    height: 500px;
 }
 
 #hintDisplay {
@@ -36,7 +42,7 @@ body {
 }
 
 .letterButtons button:hover {
-    background-color: lavender;
+    background-color: coral;
 }
 
 #resetBtn {
@@ -48,8 +54,12 @@ body {
 }
 
 #resetBtn:hover {
-    background-color: lavender;
+    background-color: coral;
     cursor: pointer;
+}
+
+.lvlOne, .lvlTwo, .lvlThree {
+    font-size: 69px;
 }
 
 #lvl1B, #lvl1L1, #lvl1A1, #lvl1C {

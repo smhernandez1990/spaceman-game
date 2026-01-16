@@ -28,7 +28,7 @@ let gameboard;
 
 // 2. Define cached elements.
 
-const spacemanImgDisplayEl = document.querySelector('.spacemanImgDisplay');
+const spacemanImgDisplayEl = document.querySelector('.spacemanImgDisplay img');
 const letterButtonsEls = document.querySelector('.letterButtons');
 const hintDisplayEl = document.querySelector('#hintDisplay');
 const lvlOneBoard = document.querySelector('.lvlOne');
@@ -45,6 +45,7 @@ function init() {
     gameboard = lvlOneBoard.children;
     incorrectGuesses = 0
     guessedLetters = []
+    spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png'
     win = false;
     lose = false;
     loadLevel();
@@ -66,6 +67,9 @@ function loadLevel() {
         lvlThreeBoard.style.display = 'none';
         currentWord = 'JAPANOISE';
         gameboard = lvlTwoBoard.children;
+        guessedLetters = []
+        spacemanImgDisplayEl.src ='https://i.imgur.com/SwKfSSw.png'
+        console.log(guessedLetters);
     } else if (currentLevel === 3) {
         hintDisplayEl.textContent = 'HINT: A subgenre of industrial music coined in the early 1980s in England often characterized by abrasive synthesizers, aggressive vocals and provocative themes.';
         lvlOneBoard.style.display = 'none';
@@ -73,14 +77,16 @@ function loadLevel() {
         lvlThreeBoard.style.display = '';
         currentWord = 'POWERELECTRONICS';
         gameboard = lvlThreeBoard.children;
+        guessedLetters = []
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png'
     };
 };
 
 function render() {
     updateBoardDisplay();
-    lvlAdvance();
     checkWin();
     checkLose();
+    lvlAdvance();
     loadLevel();
 };
 
@@ -96,16 +102,15 @@ function updateBoardDisplay() {
 
 function lvlAdvance() {
     if (currentLevel === 1 && currentWord === guessedLetters.join('')) {
-        updateBoardDisplay();
         currentLevel = 2;
         incorrectGuesses = 0;
-        guessedLetters = [];
-        alert('Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out');
+        resetBoard();
+        alert('Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out'); 
     } else if (currentLevel === 2 && currentWord === guessedLetters.join('')) {
         currentLevel = 3;
         incorrectGuesses = 0;
-        guessedLetters = [];
         alert('Okay okay, your local record store had a freak music section. But what about something a little more depraved?');
+        resetBoard();
     }
 };
 
@@ -118,11 +123,11 @@ function checkWin() {
 
 function checkLose() {
     if (incorrectGuesses === 1) {
-        spacemanImgDisplayEl.src = `https://i.imgur.com/A27buek.png`;
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/A27buek.png';
     } else if (incorrectGuesses === 2) {
-        spacemanImgDisplayEl.src = `https://i.imgur.com/uoZC9gL.png`;
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/uoZC9gL.png';
     } else if (incorrectGuesses === 3) {
-        spacemanImgDisplayEl.src = `https://i.imgur.com/fMXcJfX.png`;
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/fMXcJfX.png';
     } else if (incorrectGuesses === 4) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/QDmhY1D.png';
     } else if (incorrectGuesses === 5) {
@@ -160,16 +165,22 @@ function handleClick(event) {
 };
 
 function resetGame() {
-    init();
     currentLevel = 1
     incorrectGuesses = 0
     guessedLetters = []
-    for (i = 0; i < gameboard.length; i++){
-        gameboard[i].textContent = ''
-    }
+
     letterButtonsEls.addEventListener('click', handleClick);
+    resetBoard();
+    init();
     console.log('game reset');
     
+}
+
+function resetBoard() {
+    for (i = 0; i < gameboard.length; i++) {
+        if (currentLevel === 1 || currentLevel === 2 || currentLevel === 3)
+            gameboard[i].textContent = ''
+    }
 }
 
 letterButtonsEls.addEventListener('click', handleClick);
