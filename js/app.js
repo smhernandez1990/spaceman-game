@@ -18,8 +18,8 @@ Hint: A subgenre of industrial music coined in the early 1980s in England often 
 
 let currentWord;
 let currentLevel;
-let incorrectGuesses = 0;
-let guessedLetters = [];
+let incorrectGuesses;
+let guessedLetters;
 let win;
 let lose;
 let gameboard;
@@ -43,6 +43,8 @@ const resetBtnEl = document.querySelector('#resetBtn');
 function init() {
     currentLevel = 1;
     gameboard = lvlOneBoard.children;
+    incorrectGuesses = 0
+    guessedLetters = []
     win = false;
     lose = false;
     loadLevel();
@@ -55,6 +57,7 @@ function loadLevel() {
         hintDisplayEl.textContent = 'HINT: Most residents of Olso, Norway would probably agree that this genre of music is Norway\'s biggest cultural export.';
         lvlTwoBoard.style.display = 'none';
         lvlThreeBoard.style.display = 'none';
+        lvlOneBoard.style.display = '';
         currentWord = 'BLACKMETAL';
     } else if (currentLevel === 2) {
         hintDisplayEl.textContent = 'HINT: Artists C.C.C.C., Incapacitants, Masonna and Hanatarash are among the notable pioneers of this regional style of experimental music.';
@@ -74,14 +77,26 @@ function loadLevel() {
 };
 
 function render() {
+    updateBoardDisplay();
     lvlAdvance();
     checkWin();
     checkLose();
     loadLevel();
 };
 
+function updateBoardDisplay() {
+    for (let i = 0; i < gameboard.length; i++){
+        if (gameboard[i].textContent === guessedLetters[i]) {
+            continue;
+        } else if (gameboard[i].id.includes(guessedLetters[i])) {
+            gameboard[i].textContent = guessedLetters[i]
+        }
+    }
+}
+
 function lvlAdvance() {
     if (currentLevel === 1 && currentWord === guessedLetters.join('')) {
+        updateBoardDisplay();
         currentLevel = 2;
         incorrectGuesses = 0;
         guessedLetters = [];
@@ -146,14 +161,22 @@ function handleClick(event) {
 
 function resetGame() {
     init();
+    currentLevel = 1
     incorrectGuesses = 0
     guessedLetters = []
+    for (i = 0; i < gameboard.length; i++){
+        gameboard[i].textContent = ''
+    }
     letterButtonsEls.addEventListener('click', handleClick);
+    console.log('game reset');
+    
 }
 
 letterButtonsEls.addEventListener('click', handleClick);
 
 resetBtnEl.addEventListener('click', resetGame);
+
+console.log(gameboard);
 
 // set current level to 1, load first word and hint, reset spaceman image and guessed letters array
 
