@@ -34,6 +34,7 @@ const hintDisplayEl = document.querySelector('#hintDisplay');
 const lvlOneBoard = document.querySelector('.lvlOne');
 const lvlTwoBoard = document.querySelector('.lvlTwo');
 const lvlThreeBoard = document.querySelector('.lvlThree');
+const resetBtnEl = document.querySelector('#resetBtn');
 
 // spaceman image display, letter buttons, hint display, level gameboard
 
@@ -137,15 +138,22 @@ function handleClick(event) {
         }
     }
     render();
-    if (win === true) {
+    if (win === true || lose === true) {
         letterButtonsEls.removeEventListener('click', handleClick)
     }
     }
 };
 
+function resetGame() {
+    init();
+    incorrectGuesses = 0
+    guessedLetters = []
+    letterButtonsEls.addEventListener('click', handleClick);
+}
 
-letterButtonsEls.addEventListener('click', handleClick)
+letterButtonsEls.addEventListener('click', handleClick);
 
+resetBtnEl.addEventListener('click', resetGame);
 
 // set current level to 1, load first word and hint, reset spaceman image and guessed letters array
 
