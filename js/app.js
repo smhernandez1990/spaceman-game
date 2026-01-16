@@ -41,7 +41,7 @@ const lvlThreeBoard = document.querySelector('.lvlThree');
 
 function init() {
     currentLevel = 1;
-    gameboard = lvlOneBoard;
+    gameboard = lvlOneBoard.children;
     win = false;
     lose = false;
     loadLevel();
@@ -58,15 +58,17 @@ function loadLevel() {
     } else if (currentLevel === 2) {
         hintDisplayEl.textContent = 'HINT: Artists C.C.C.C., Incapacitants, Masonna and Hanatarash are among the notable pioneers of this regional style of experimental music.';
         lvlOneBoard.style.display = 'none';
+        lvlTwoBoard.style.display = '';
         lvlThreeBoard.style.display = 'none';
         currentWord = 'JAPANOISE';
-        gameboard = lvlTwoBoard;
+        gameboard = lvlTwoBoard.children;
     } else if (currentLevel === 3) {
         hintDisplayEl.textContent = 'HINT: A subgenre of industrial music coined in the early 1980s in England often characterized by abrasive synthesizers, aggressive vocals and provocative themes.';
         lvlOneBoard.style.display = 'none';
         lvlTwoBoard.style.display = 'none';
+        lvlThreeBoard.style.display = '';
         currentWord = 'POWERELECTRONICS';
-        gameboard = lvlThreeBoard;
+        gameboard = lvlThreeBoard.children;
     };
 };
 
@@ -116,17 +118,30 @@ function checkLose() {
 
 function handleClick(event) {
     const letterClicked = event.target.textContent;
+    const wordArr = Array.from(currentWord)
     console.log(letterClicked);
-    if (currentWord.includes(letterClicked)) {
+    console.log(wordArr);
+    for (let i = 0; i < wordArr.length; i++){
+    if (wordArr[i] == guessedLetters[i]) {
+        continue;
+    } else if (wordArr[i] === letterClicked) {
         guessedLetters.push(letterClicked);
-        console.log(guessedLetters); 
+        console.log(guessedLetters);
     } else {
         incorrectGuesses++;
-        console.log(incorrectGuesses);  
+        console.log(incorrectGuesses);
     };
+    for (i = 0; i < gameboard.length; i++) {
+        if (gameboard[i].textContent === letterClicked) {
+            gameboard[i].style.display = '';
+        }
+    }
     render();
+    if (win === true) {
+        letterButtonsEls.removeEventListener('click', handleClick)
+    }
+    }
 };
-
 
 
 letterButtonsEls.addEventListener('click', handleClick)
