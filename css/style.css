@@ -86,6 +86,7 @@ body {
     border: 2px solid black;
     width: 70px;
     height: 70px;
+    vertical-align: top;
 }
 
 #lvl1K {
@@ -94,6 +95,7 @@ body {
     width: 70px;
     height: 70px;
     margin-right: 10px;
+    vertical-align: top;
 }
 
 #lvl1M, #lvl1E, #lvl1T, #lvl1A2, #lvl1L2 {
@@ -101,6 +103,7 @@ body {
     border: 2px solid black;
     width: 70px;
     height: 70px;
+    vertical-align: top;
 }
 
 .lvlTwo > * {
@@ -108,6 +111,7 @@ body {
     border: 2px solid black;
     width: 70px;
     height: 70px;
+    vertical-align: top;
 }
 
 #lvl3P, #lvl3O1, #lvl3W, #lvl3E1 {
@@ -115,6 +119,7 @@ body {
     border: 2px solid black;
     width: 70px;
     height: 70px;
+    vertical-align: top;
 }
 
 #lvl3R1 {
@@ -123,6 +128,7 @@ body {
     width: 70px;
     height: 70px;
     margin-right: 10px;
+    vertical-align: top;
 }
 
 #lvl3E2, #lvl3L, #lvl3E3, #lvl3C1, #lvl3T, #lvl3R2, #lvl3O2, #lvl3N, #lvl3I, #lvl3C2, #lvl3S {
@@ -130,4 +136,5 @@ body {
     border: 2px solid black;
     width: 70px;
     height: 70px;
+    vertical-align: top;
 }
