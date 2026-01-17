@@ -22,6 +22,7 @@ function init() {
     incorrectGuesses = 0;
     guessedLetters = [];
     spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png';
+    spacemanImgDisplayEl.setAttribute('alt', 'blank/no wrong guesses');
     messageDisplayEL.textContent = '';
     win = false;
     lose = false;
@@ -46,6 +47,7 @@ function loadLevel() {
         gameboard = lvlTwoBoard.children;
         guessedLetters = [];
         spacemanImgDisplayEl.src ='https://i.imgur.com/SwKfSSw.png';
+        spacemanImgDisplayEl.setAttribute('alt', 'blank/no wrong guesses');
     } else if (currentLevel === 3) {
         hintDisplayEl.textContent = 'HINT: A subgenre of industrial music coined in the early 1980s in England often characterized by abrasive synthesizers, aggressive vocals and provocative themes.';
         lvlOneBoard.style.display = 'none';
@@ -55,6 +57,7 @@ function loadLevel() {
         gameboard = lvlThreeBoard.children;
         guessedLetters = [];
         spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png';
+        spacemanImgDisplayEl.setAttribute('alt', 'blank/no wrong guesses');
     };
 };
 
@@ -114,8 +117,6 @@ function checkLose() {
     } else if (incorrectGuesses === 5) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/2EewjBC.jpg';
         spacemanImgDisplayEl.setAttribute('alt', 'full spaceman revealed/GAME OVER');
-        console.log(spacemanImgDisplayEl);
-        
         lose = true;
         return messageDisplayEL.textContent = 'You Lose! Click Reset Game to try again or maybe lurk some special interest forums from the 2000\'s first';
     };
@@ -124,17 +125,13 @@ function checkLose() {
 function handleClick(event) {
     const letterClicked = event.target.textContent;
     const wordArr = Array.from(currentWord);
-    console.log(letterClicked);
-    console.log(wordArr);
     for (let i = 0; i < wordArr.length; i++){
         if (wordArr[i] == guessedLetters[i]) {
             continue;
         } else if (wordArr[i] === letterClicked) {
             guessedLetters.push(letterClicked);
-            console.log(guessedLetters);
         } else {
             incorrectGuesses++;
-            console.log(incorrectGuesses);
         };
     for (i = 0; i < gameboard.length; i++) {
         if (gameboard[i].textContent === letterClicked) {
@@ -159,9 +156,7 @@ function resetGame() {
     });
     resetBoard();
     init();
-    console.log('game reset');
-    
-}
+};
 
 function resetBoard() {
     for (i = 0; i < gameboard.length; i++) {
@@ -174,11 +169,7 @@ letterButtonsEls.forEach(letterButtonEl => {
     letterButtonEl.addEventListener('click', handleClick);
 });
 
-//letterButtonsEls.addEventListener('click', handleClick);
-
 resetBtnEl.addEventListener('click', resetGame);
-
-console.log(gameboard);
 
 // set current level to 1, load first word and hint, reset spaceman image and guessed letters array
 
