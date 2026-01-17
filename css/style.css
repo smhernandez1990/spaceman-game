@@ -139,7 +139,7 @@ body {
     vertical-align: top;
 }
 
-@media screen and (max-width: 320px),
+@media screen and (min-width: 320px),
 screen and (orientation: portrait) {
     .spacemanImgDisplay {
         width: 200px;
