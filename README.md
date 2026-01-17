@@ -71,3 +71,5 @@ For this game I used `HTML` to create this different elements of the game, `CSS`
 ## Planned Updates
 
 Future updates I would like to make are adding media queries to make the game more compatible with mobile devices and tablets as well as maybe adding additional levels to the game and sound effects for each level advancement, winning and losing.
+
++ __UPDATE 17.01.2026__: Media query added for smart phone compatibility

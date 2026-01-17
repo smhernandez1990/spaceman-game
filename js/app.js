@@ -135,7 +135,7 @@ function handleClick(event) {
         };
     for (i = 0; i < gameboard.length; i++) {
         if (gameboard[i].textContent === letterClicked) {
-            gameboard[i].style.display = '';
+            gameboard[i].style.display = letterClicked;
         };
     };
     render();
