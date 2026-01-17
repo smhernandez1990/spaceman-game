@@ -170,38 +170,3 @@ letterButtonsEls.forEach(letterButtonEl => {
 });
 
 resetBtnEl.addEventListener('click', resetGame);
-
-// set current level to 1, load first word and hint, reset spaceman image and guessed letters array
-
-// 4. Define win/lose conditions.
-
-//IF all letters in the word are guessed correctly AND current level is less than 3
-// THEN display win alert and move to next level
-//ELSE IF all letters in the word are guessed correctly AND current level is 3
-// THEN display final win alert
-//ELSE display lose alert
-
-// 5. Define input handling.
-
-//Add event listeners to letter buttons
-// IF letter guessed correctly
-// THEN update gameboard display to display letter in correct positions
-// ELSE
-// increment incorrect guess count
-// update spaceman image display
-
-// 6. How will the spaceman image be updated with each incorrect guess?
-
-// change image source to next image in sequence based on incorrect guess count
-
-// 7. How will the game update from one level to the next?
-
-//a different div class for each level
-
-// 8. How will the game react to a win or loss?
-
-// alert windows for win/loss messages
-
-// 9. How will the game reset?
-
-// reset button to restart the game using init function
