@@ -35,6 +35,7 @@ const lvlOneBoard = document.querySelector('.lvlOne');
 const lvlTwoBoard = document.querySelector('.lvlTwo');
 const lvlThreeBoard = document.querySelector('.lvlThree');
 const resetBtnEl = document.querySelector('#resetBtn');
+const messageDisplayEL = document.querySelector('#messageDisplay')
 
 // spaceman image display, letter buttons, hint display, level gameboard
 
@@ -43,9 +44,10 @@ const resetBtnEl = document.querySelector('#resetBtn');
 function init() {
     currentLevel = 1;
     gameboard = lvlOneBoard.children;
-    incorrectGuesses = 0
-    guessedLetters = []
-    spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png'
+    incorrectGuesses = 0;
+    guessedLetters = [];
+    spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png';
+    messageDisplayEL.textContent = '';
     win = false;
     lose = false;
     loadLevel();
@@ -104,12 +106,12 @@ function lvlAdvance() {
         currentLevel = 2;
         incorrectGuesses = 0;
         resetBoard();
-        alert('Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out');
+        messageDisplayEL.textContent = 'Alright Fenriz, we get it you heard A Blaze In The Northern Sky in high school but try this next one out';
         loadLevel();
     } else if (currentLevel === 2 && currentWord === guessedLetters.join('')) {
         currentLevel = 3;
         incorrectGuesses = 0;
-        alert('Okay okay, your local record store had a freak music section. But what about something a little more depraved?');
+        messageDisplayEL.textContent = 'Okay okay, your local record store had a freak music section. But what about something a little more depraved?';
         resetBoard();
         loadLevel();
     }
@@ -118,7 +120,7 @@ function lvlAdvance() {
 function checkWin() {
     if (currentLevel === 3 && currentWord === guessedLetters.join('')) {
         win = true;
-        return alert('You Win! You are a true purveyor of the subversive and depraved. Congrats?');
+        return messageDisplayEL.textContent = 'You Win! You are a true purveyor of the subversive and depraved. Congrats?';
     };
 };
 
@@ -134,7 +136,7 @@ function checkLose() {
     } else if (incorrectGuesses === 5) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/2EewjBC.jpg';
         lose = true;
-        return alert('You Lose! Try again or maybe lurk some special interest forums from the 2000\'s first');
+        return messageDisplayEL.textContent = 'You Lose! Click Reset Game to try again or maybe lurk some special interest forums from the 2000\'s first';
     };
 }
 
@@ -169,7 +171,6 @@ function resetGame() {
     currentLevel = 1
     incorrectGuesses = 0
     guessedLetters = []
-
     letterButtonsEls.addEventListener('click', handleClick);
     resetBoard();
     init();
