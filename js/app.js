@@ -101,14 +101,21 @@ function checkWin() {
 function checkLose() {
     if (incorrectGuesses === 1) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/A27buek.png';
+        spacemanImgDisplayEl.setAttribute('alt', 'spaceman head revealed/one wrong guess');
     } else if (incorrectGuesses === 2) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/uoZC9gL.png';
+        spacemanImgDisplayEl.setAttribute('alt', 'spaceman upper body reveled/two wrong guesses');
     } else if (incorrectGuesses === 3) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/fMXcJfX.png';
+        spacemanImgDisplayEl.setAttribute('alt', 'spaceman full torso revealed/three wrong guesses');
     } else if (incorrectGuesses === 4) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/QDmhY1D.png';
+        spacemanImgDisplayEl.setAttribute('alt', 'spaceman thighs revealed/four wrong guesses');
     } else if (incorrectGuesses === 5) {
         spacemanImgDisplayEl.src = 'https://i.imgur.com/2EewjBC.jpg';
+        spacemanImgDisplayEl.setAttribute('alt', 'full spaceman revealed/GAME OVER');
+        console.log(spacemanImgDisplayEl);
+        
         lose = true;
         return messageDisplayEL.textContent = 'You Lose! Click Reset Game to try again or maybe lurk some special interest forums from the 2000\'s first';
     };
