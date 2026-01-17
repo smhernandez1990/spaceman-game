@@ -70,8 +70,10 @@ body {
     cursor: pointer;
 }
 
-.lvlOne, .lvlTwo, .lvlThree {
+.lvlOne, .lvlTwo, .lvlThree > * {
     font-size: 69px;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 #lvl1B, #lvl1L1, #lvl1A1, #lvl1C {

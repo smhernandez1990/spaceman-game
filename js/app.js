@@ -1,20 +1,3 @@
-/*
-I'm planning to do a 3 level game of spaceman with a theme of different styles of weird music genres from around the world. Each level will begin with a hint about the genre and an empty display indicating the number of letters in the name of the genre. The player will guess letters until they either guess the genre correctly or run out of attempts. With each incorrect guess a part of an image of a spaceman will be revealed. When the entire spaceman is revealed the game is over and an alert window will appear with a message indicating the player has lost. If the player guesses the genre correctly an alert window will pop up congratulating them and they will move on to the next level and the spaceman image will reset. When all three levels are completed successfully a final alert window will appear congratulating the player on completing the game. 
-
-Level 1:
-Genre: Black Metal
-Hint: Most residents of Olso, Norway would probably agree that this genre of music is Norway's biggest cultural export.
-
-Level 2:
-Genre: Japanoise
-Hint: Artists C.C.C.C., Incapacitants, Masonna and Hanatarash are among the notable pioneers of this regional style of experimental music.
-
-Level 3:
-Genre: Power Electronics
-Hint: A subgenre of industrial music coined in the early 1980s in England often characterized by abrasive synthesizers, aggressive vocals and provocative themes.
-*/
-
-// 1. Define main variables needed for the game.
 
 let currentWord;
 let currentLevel;
@@ -24,22 +7,14 @@ let win;
 let lose;
 let gameboard;
 
-// current word, current level, gameboard, number of incorrect guesses, guessed letters array
-
-// 2. Define cached elements.
-
 const spacemanImgDisplayEl = document.querySelector('.spacemanImgDisplay img');
-const letterButtonsEls = document.querySelector('.letterButtons');
+const letterButtonsEls = document.querySelectorAll('.letterKey');
 const hintDisplayEl = document.querySelector('#hintDisplay');
 const lvlOneBoard = document.querySelector('.lvlOne');
 const lvlTwoBoard = document.querySelector('.lvlTwo');
 const lvlThreeBoard = document.querySelector('.lvlThree');
 const resetBtnEl = document.querySelector('#resetBtn');
-const messageDisplayEL = document.querySelector('#messageDisplay')
-
-// spaceman image display, letter buttons, hint display, level gameboard
-
-// 3. Create an initialization function.
+const messageDisplayEL = document.querySelector('#messageDisplay');
 
 function init() {
     currentLevel = 1;
@@ -51,7 +26,7 @@ function init() {
     win = false;
     lose = false;
     loadLevel();
-}
+};
 
 init();
 
@@ -69,9 +44,8 @@ function loadLevel() {
         lvlThreeBoard.style.display = 'none';
         currentWord = 'JAPANOISE';
         gameboard = lvlTwoBoard.children;
-        guessedLetters = []
-        spacemanImgDisplayEl.src ='https://i.imgur.com/SwKfSSw.png'
-        console.log(guessedLetters);
+        guessedLetters = [];
+        spacemanImgDisplayEl.src ='https://i.imgur.com/SwKfSSw.png';
     } else if (currentLevel === 3) {
         hintDisplayEl.textContent = 'HINT: A subgenre of industrial music coined in the early 1980s in England often characterized by abrasive synthesizers, aggressive vocals and provocative themes.';
         lvlOneBoard.style.display = 'none';
@@ -79,8 +53,8 @@ function loadLevel() {
         lvlThreeBoard.style.display = '';
         currentWord = 'POWERELECTRONICS';
         gameboard = lvlThreeBoard.children;
-        guessedLetters = []
-        spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png'
+        guessedLetters = [];
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png';
     };
 };
 
@@ -97,9 +71,9 @@ function updateBoardDisplay() {
             continue;
         } else if (gameboard[i].id.includes(guessedLetters[i])) {
             gameboard[i].textContent = guessedLetters[i]
-        }
-    }
-}
+        };
+    };
+};
 
 function lvlAdvance() {
     if (currentLevel === 1 && currentWord === guessedLetters.join('')) {
@@ -114,7 +88,7 @@ function lvlAdvance() {
         messageDisplayEL.textContent = 'Okay okay, your local record store had a freak music section. But what about something a little more depraved?';
         resetBoard();
         loadLevel();
-    }
+    };
 };
 
 function checkWin() {
@@ -138,40 +112,44 @@ function checkLose() {
         lose = true;
         return messageDisplayEL.textContent = 'You Lose! Click Reset Game to try again or maybe lurk some special interest forums from the 2000\'s first';
     };
-}
+};
 
 function handleClick(event) {
     const letterClicked = event.target.textContent;
-    const wordArr = Array.from(currentWord)
+    const wordArr = Array.from(currentWord);
     console.log(letterClicked);
     console.log(wordArr);
     for (let i = 0; i < wordArr.length; i++){
-    if (wordArr[i] == guessedLetters[i]) {
-        continue;
-    } else if (wordArr[i] === letterClicked) {
-        guessedLetters.push(letterClicked);
-        console.log(guessedLetters);
-    } else {
-        incorrectGuesses++;
-        console.log(incorrectGuesses);
-    };
+        if (wordArr[i] == guessedLetters[i]) {
+            continue;
+        } else if (wordArr[i] === letterClicked) {
+            guessedLetters.push(letterClicked);
+            console.log(guessedLetters);
+        } else {
+            incorrectGuesses++;
+            console.log(incorrectGuesses);
+        };
     for (i = 0; i < gameboard.length; i++) {
         if (gameboard[i].textContent === letterClicked) {
             gameboard[i].style.display = '';
-        }
-    }
+        };
+    };
     render();
-    if (win === true || lose === true) {
-        letterButtonsEls.removeEventListener('click', handleClick)
-    }
-    }
+        if (win === true || lose === true) {
+            letterButtonsEls.forEach(letterButtonEl => {
+                letterButtonEl.removeEventListener('click', handleClick);
+            });
+        };
+    };
 };
 
 function resetGame() {
     currentLevel = 1
     incorrectGuesses = 0
     guessedLetters = []
-    letterButtonsEls.addEventListener('click', handleClick);
+    letterButtonsEls.forEach(letterButtonEl => {
+        letterButtonEl.addEventListener('click', handleClick);
+    });
     resetBoard();
     init();
     console.log('game reset');
@@ -181,11 +159,15 @@ function resetGame() {
 function resetBoard() {
     for (i = 0; i < gameboard.length; i++) {
         if (currentLevel === 1 || currentLevel === 2 || currentLevel === 3)
-            gameboard[i].textContent = ''
-    }
-}
+            gameboard[i].textContent = '';
+    };
+};
 
-letterButtonsEls.addEventListener('click', handleClick);
+letterButtonsEls.forEach(letterButtonEl => {
+    letterButtonEl.addEventListener('click', handleClick);
+});
+
+//letterButtonsEls.addEventListener('click', handleClick);
 
 resetBtnEl.addEventListener('click', resetGame);
 
