@@ -126,7 +126,7 @@ function handleClick(event) {
     const letterClicked = event.target.textContent;
     const wordArr = Array.from(currentWord);
     for (let i = 0; i < wordArr.length; i++) {
-        if (wordArr[i] == guessedLetters[i]) {
+        if (wordArr[i] === guessedLetters[i]) {
             continue;
         } else if (wordArr[i] === letterClicked) {
             guessedLetters.push(letterClicked);
@@ -145,10 +145,6 @@ function handleClick(event) {
             });
         };
     };
-    console.log(letterClicked);
-    console.log(guessedLetters);
-
-
 };
 
 
