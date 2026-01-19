@@ -33,7 +33,7 @@ init();
 
 function loadLevel() {
     if (currentLevel === 1) {
-        hintDisplayEl.textContent = 'HINT: Most residents of Olso, Norway would probably agree that this genre of music is Norway\'s biggest cultural export.';
+        hintDisplayEl.textContent = 'HINT: Most residents of Oslo, Norway would probably agree that this genre of music is Norway\'s biggest cultural export.';
         lvlTwoBoard.style.display = 'none';
         lvlThreeBoard.style.display = 'none';
         lvlOneBoard.style.display = '';
@@ -46,7 +46,7 @@ function loadLevel() {
         currentWord = 'JAPANOISE';
         gameboard = lvlTwoBoard.children;
         guessedLetters = [];
-        spacemanImgDisplayEl.src ='https://i.imgur.com/SwKfSSw.png';
+        spacemanImgDisplayEl.src = 'https://i.imgur.com/SwKfSSw.png';
         spacemanImgDisplayEl.setAttribute('alt', 'blank/no wrong guesses');
     } else if (currentLevel === 3) {
         hintDisplayEl.textContent = 'HINT: A subgenre of industrial music coined in the early 1980s in England often characterized by abrasive synthesizers, aggressive vocals and provocative themes.';
@@ -69,7 +69,7 @@ function render() {
 };
 
 function updateBoardDisplay() {
-    for (let i = 0; i < gameboard.length; i++){
+    for (let i = 0; i < gameboard.length; i++) {
         if (gameboard[i].textContent === guessedLetters[i]) {
             continue;
         } else if (gameboard[i].id.includes(guessedLetters[i])) {
@@ -125,7 +125,7 @@ function checkLose() {
 function handleClick(event) {
     const letterClicked = event.target.textContent;
     const wordArr = Array.from(currentWord);
-    for (let i = 0; i < wordArr.length; i++){
+    for (let i = 0; i < wordArr.length; i++) {
         if (wordArr[i] == guessedLetters[i]) {
             continue;
         } else if (wordArr[i] === letterClicked) {
@@ -133,19 +133,24 @@ function handleClick(event) {
         } else {
             incorrectGuesses++;
         };
-    for (i = 0; i < gameboard.length; i++) {
-        if (gameboard[i].textContent === letterClicked) {
-            gameboard[i].style.display = letterClicked;
+        for (i = 0; i < gameboard.length; i++) {
+            if (gameboard[i].textContent === letterClicked) {
+                gameboard[i].style.display = '';
+            };
         };
-    };
-    render();
+        render();
         if (win === true || lose === true) {
             letterButtonsEls.forEach(letterButtonEl => {
                 letterButtonEl.removeEventListener('click', handleClick);
             });
         };
     };
+    console.log(letterClicked);
+    console.log(guessedLetters);
+
+
 };
+
 
 function resetGame() {
     currentLevel = 1
