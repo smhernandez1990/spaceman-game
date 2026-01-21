@@ -64,6 +64,8 @@ Obviously a lot changed once I got going on the actual code but this is where I 
 
 All the images used in this game and `README` are located in my [imgur account]('https://imgur.com/user/smhernandez1990/posts').
 
+Spaceman is a screenshot from The Twilight Zone.
+
 ## Tech Used
 
 For this game I used `HTML` to create the different elements of the game, `CSS` to style the elements and some of the behaviors such as cursor changes and hover actions, `JavaScript` to make the game function and finally `Markdown` to make the `README` you are looking over right now. Wow!
