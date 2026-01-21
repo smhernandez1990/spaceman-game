@@ -66,7 +66,7 @@ All the images used in this game and `README` are located in my [imgur account](
 
 ## Tech Used
 
-For this game I used `HTML` to create this different elements of the game, `CSS` to style the elements and some of the behaviors such as cursor changes and hover actions, `JavaScript` to make the game function and finally `Markdown` to make the `README` you are looking over right now. Wow!
+For this game I used `HTML` to create the different elements of the game, `CSS` to style the elements and some of the behaviors such as cursor changes and hover actions, `JavaScript` to make the game function and finally `Markdown` to make the `README` you are looking over right now. Wow!
 
 ## Planned Updates
 
